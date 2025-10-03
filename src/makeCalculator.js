@@ -9,19 +9,19 @@ function makeCalculator() {
   const calculator = {
     result: 0,
 
-    add: function (n) {
+    add(n) {
       this.result += n;
 
       return this;
     },
 
-    subtract: function (n) {
+    subtract(n) {
       this.result -= n;
 
       return this;
     },
 
-    divide: function (n) {
+    divide(n) {
       if (n !== 0) {
         this.result /= n;
       }
@@ -29,19 +29,19 @@ function makeCalculator() {
       return this;
     },
 
-    multiply: function (n) {
+    multiply(n) {
       this.result *= n;
 
       return this;
     },
 
-    reset: function () {
+    reset() {
       this.result = 0;
 
       return this;
     },
 
-    operate: function (callback, n) {
+    operate(callback, n) {
       callback.call(this, n);
 
       return this;
