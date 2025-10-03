@@ -6,53 +6,49 @@
 function makeCalculator() {
   // write code here
 
-  const add = (current, n) => {
-    return current + n;
-  };
-
-  const subtract = (current, n) => {
-    return current - n;
-  };
-
-  const divide = (current, n) => {
-    if (n === 0) {
-      return undefined;
-    } else {
-      return Math.ceil(current) / n;
-    }
-  };
-
-  const multiply = (current, n) => {
-    return current * n;
-  };
-
-  const reset = () => {
-    math.result = 0;
-
-    return math;
-  };
-
-  function operate(callback, n) {
-    const next = callback(math.result, n);
-
-    if (callback !== undefined) {
-      math.result = next;
-
-      return math;
-    }
-  }
-
-  const math = {
-    add,
-    subtract,
-    divide,
-    multiply,
-    reset,
-    operate,
+  const calculator = {
     result: 0,
+
+    add: function (n) {
+      this.result += n;
+
+      return this;
+    },
+
+    subtract: function (n) {
+      this.result -= n;
+
+      return this;
+    },
+
+    divide: function (n) {
+      if (n !== 0) {
+        this.result /= n;
+      }
+
+      return this;
+    },
+
+    multiply: function (n) {
+      this.result *= n;
+
+      return this;
+    },
+
+    reset: function () {
+      this.result = 0;
+
+      return this;
+    },
+
+    operate: function (callback, n) {
+      callback.call(this, n);
+
+      return this;
+    },
   };
 
-  return math;
+  return calculator;
 }
 
 module.exports = makeCalculator;
